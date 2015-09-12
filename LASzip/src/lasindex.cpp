@@ -50,9 +50,8 @@
     #include <unordered_map>
     using namespace std;
   #else
-    #include <tr1/unordered_map>
-    using namespace std;
-    using namespace tr1;
+    #include <unordered_map>
+    using std::unordered_map;
   #endif
 typedef unordered_map<I32,U32> my_cell_hash;
 #else

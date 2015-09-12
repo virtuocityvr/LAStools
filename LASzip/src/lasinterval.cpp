@@ -47,8 +47,8 @@ using namespace std;
   #if defined(__APPLE__) && defined(__clang__)
     #include <unordered_map>
   #else
-    #include <tr1/unordered_map>
-    using namespace tr1;
+    #include <unordered_map>
+    using std::unordered_map;
   #endif
 typedef unordered_map<I32, LASintervalStartCell*> my_cell_hash;
 #else
