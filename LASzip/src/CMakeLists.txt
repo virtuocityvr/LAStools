@@ -60,14 +60,15 @@ set(source_files
 )
 
 
-if(WIN32)
+#if(WIN32)
 	list(APPEND header_files ../dll/laszip_dll.h)
 	list(APPEND source_files laszip_dll.cpp)
-endif()
+#endif()
 
 set(files ${header_files} ${source_files})
 
 add_definitions("-DLASZIPDLL_EXPORTS")
+add_definitions("-DUNORDERED")
 if(WIN32)
 	add_definitions("-D_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS")
 	add_definitions("-D_CRT_SECURE_NO_WARNINGS")
