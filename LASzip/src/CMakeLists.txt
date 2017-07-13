@@ -25,17 +25,21 @@ set(header_files
 	lasreaditem.hpp
 	lasreaditemcompressed_v1.hpp
 	lasreaditemcompressed_v2.hpp
+	lasreaditemcompressed_v3.hpp
 	lasreaditemraw.hpp
 	lasreadpoint.hpp
 	lasunzipper.hpp
 	laswriteitem.hpp
 	laswriteitemcompressed_v1.hpp
 	laswriteitemcompressed_v2.hpp
+	laswriteitemcompressed_v3.hpp
 	laswriteitemraw.hpp
 	laswritepoint.hpp
 	laszip.hpp
 	laszip_common_v1.hpp
 	laszip_common_v2.hpp
+	laszip_common_v3.hpp
+	laszip_decompress_selective_v3.hpp
 	laszipper.hpp
 	mydefs.hpp
 )
@@ -50,18 +54,21 @@ set(source_files
 	lasquadtree.cpp
 	lasreaditemcompressed_v1.cpp
 	lasreaditemcompressed_v2.cpp
+	lasreaditemcompressed_v3.cpp
 	lasreadpoint.cpp
 	lasunzipper.cpp
 	laswriteitemcompressed_v1.cpp
 	laswriteitemcompressed_v2.cpp
+	laswriteitemcompressed_v3.cpp
 	laswritepoint.cpp
 	laszip.cpp
+	laszip_dll.cpp
 	laszipper.cpp
 )
 
 
 #if(WIN32)
-	list(APPEND header_files ../dll/laszip_dll.h)
+	list(APPEND header_files ../dll/laszip_api.h)
 	list(APPEND source_files laszip_dll.cpp)
 #endif()
 

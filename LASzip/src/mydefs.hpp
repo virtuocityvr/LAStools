@@ -24,13 +24,26 @@
   
   CHANGE HISTORY:
   
-    10 January 2011 -- licensing change for LGPL release and liblas integration
+    28 October 2015 -- adding DLL bindings via 'COMPILE_AS_DLL' and 'USE_AS_DLL'
+    10 January 2011 -- licensing change for LGPL release and libLAS integration
     13 July 2005 -- created after returning with many mosquito bites from OBX
   
 ===============================================================================
 */
 #ifndef MYDEFS_HPP
 #define MYDEFS_HPP
+
+#ifndef _WIN32
+#define LASLIB_DLL
+#else  // _WIN32
+#ifdef COMPILE_AS_DLL
+#define LASLIB_DLL __declspec(dllexport)
+#elif USE_AS_DLL
+#define LASLIB_DLL __declspec(dllimport)
+#else
+#define LASLIB_DLL
+#endif
+#endif // _WIN32
 
 typedef char               CHAR;
 
@@ -134,11 +147,14 @@ typedef union U64I64F64 { U64 u64; I64 i64; F64 f64; } U64I64F64;
 #define U8_FITS_IN_RANGE(n) (((n) >= U8_MIN) && ((n) <= U8_MAX) ? TRUE : FALSE)
 #define I16_FITS_IN_RANGE(n) (((n) >= I16_MIN) && ((n) <= I16_MAX) ? TRUE : FALSE)
 #define U16_FITS_IN_RANGE(n) (((n) >= U16_MIN) && ((n) <= U16_MAX) ? TRUE : FALSE)
+#define I32_FITS_IN_RANGE(n) (((n) >= I32_MIN) && ((n) <= I32_MAX) ? TRUE : FALSE)
+#define U32_FITS_IN_RANGE(n) (((n) >= U32_MIN) && ((n) <= U32_MAX) ? TRUE : FALSE)
 
 #define F32_IS_FINITE(n) ((F32_MIN < (n)) && ((n) < F32_MAX))
 #define F64_IS_FINITE(n) ((F64_MIN < (n)) && ((n) < F64_MAX))
 
 #define U32_ZERO_BIT_0(n) (((n)&(U32)0xFFFFFFFE))
+#define U32_ZERO_BIT_0_1(n) (((n)&(U32)0xFFFFFFFC))
 
 #ifndef FALSE
 #define FALSE   0
