@@ -25,7 +25,7 @@
   CHANGE HISTORY:
 
    28 May 2017 -- support for "LAS 1.4 selective decompression" added into DLL API
-   25 April 2017 -- adding initial support for new "native LAS 1.4 extension" 
+   25 April 2017 -- adding initial support for new "native LAS 1.4 extension"
     8 January 2017 -- changed from "laszip_dll.h" to "laszip_api.h" for hobu
 
 ===============================================================================
@@ -2144,7 +2144,7 @@ laszip_open_writer(
     {
       laszip->request_version(0);
     }
-    
+
     // open the file
 
     laszip_dll->file = fopen(file_name, "wb");
@@ -2378,7 +2378,7 @@ laszip_open_writer(
           sprintf(laszip_dll->warning, "header.start_of_waveform_data_packet_record is %llu. writing 0 instead.", laszip_dll->header.start_of_waveform_data_packet_record);
 #endif
           laszip_dll->header.start_of_waveform_data_packet_record = 0;
-        }                  
+        }
         try { laszip_dll->streamout->put64bitsLE((U8*)&(laszip_dll->header.start_of_waveform_data_packet_record)); } catch(...)
         {
           sprintf(laszip_dll->error, "writing header.start_of_waveform_data_packet_record");
@@ -4215,10 +4215,10 @@ laszip_read_point(
       extended_returns = point->extra_bytes[laszip_dll->start_extended_returns];
       classification = point->extra_bytes[laszip_dll->start_classification];
       flags_and_channel = point->extra_bytes[laszip_dll->start_flags_and_channel];
-      if (laszip_dll->start_NIR_band != -1)
-      {
-        ((U16)(point->rgb[3])) = *((U16*)(point->extra_bytes + laszip_dll->start_NIR_band));
-      }
+      //if (laszip_dll->start_NIR_band != -1)
+      //{
+      //  ((U16)(point->rgb[3])) = *((U16*)(point->extra_bytes + laszip_dll->start_NIR_band));
+      //}
 
       // decompose into individual attributes
       return_number_increment = (extended_returns >> 4) & 0x0F;
